@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity{
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestProfile()
-                .requestIdToken(BuildConfig.server_client_id)
+                .requestIdToken("1011850112864-1r0kh2gnrdp8ddjdhbeor3cbm1onvf0q.apps.googleusercontent.com")
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
