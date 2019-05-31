@@ -14,6 +14,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "group", "\"${System.env.group}\"")
+            resValue("string", "group", "${System.env.group}")
+            buildConfigField("String", "license", "\"${System.env.license}\"")
+            resValue("string", "license", "${System.env.license}")
+            buildConfigField("String", "server_client_id", "\"${System.env.server_client_id}\"")
+            resValue("string", "server_client_id", "${System.env.server_client_id}")
+        }
+        debug {
+            // Use static values for incremental builds to ensure that
+            // resource files and BuildConfig aren't rebuilt with each run.
+            // If they were dynamic, they would prevent certain benefits of
+            // Instant Run as well as Gradle UP-TO-DATE checks.
+
         }
     }
 }
@@ -37,5 +50,8 @@ dependencies {
     implementation 'com.github.livechat:chat-window-android:v2.0.3'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.squareup.okhttp:okhttp:2.6.0'
+    def appCenterSdkVersion = '2.0.0'
+    implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+    implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
 }

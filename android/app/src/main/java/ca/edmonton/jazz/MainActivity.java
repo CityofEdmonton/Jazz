@@ -19,7 +19,9 @@ import android.net.Uri;
 
 import java.io.IOException;
 
-
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 public class MainActivity extends AppCompatActivity{
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -32,10 +34,13 @@ public class MainActivity extends AppCompatActivity{
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestProfile()
-                .requestIdToken(Config.server_client_id)
+                .requestIdToken(BuildConfig.server_client_id)
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        AppCenter.start(getApplication(), "b8cefd2a-6777-4033-ac9d-72a102c38559",
+                Analytics.class, Crashes.class);
 
     }
 
@@ -103,12 +108,12 @@ public class MainActivity extends AppCompatActivity{
                         String scope = "oauth2:"+Scopes.EMAIL+" "+ Scopes.PROFILE;
                         String accessToken = GoogleAuthUtil.getToken(getApplicationContext(), account.getAccount(), scope, new Bundle());
                         Log.d("accessToken2", "accessToken:"+accessToken+", account.getDisplayName() "+account.getDisplayName() );
-                        String params = "groups=" + Config.group+
+                        String params = "groups=" + BuildConfig.group+
                                 "&name=" + account.getDisplayName() +
                                 "&email=" + account.getEmail()+
                                 "&token=" + accessToken;
 
-                        Uri uri = Uri.parse("https://secure.livechatinc.com/licence/"+Config.license+"/open_chat.cgi?"+params); // missing 'http://' will cause crashed
+                        Uri uri = Uri.parse("https://secure.livechatinc.com/licence/"+BuildConfig.license+"/open_chat.cgi?"+params); // missing 'http://' will cause crashed
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                         startActivity(intent);
 
