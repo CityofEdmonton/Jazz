@@ -6,7 +6,7 @@ target 'Jazz' do
 use_frameworks!
 
 # Pods for vip-chat-native-ios
-pod 'LiveChat', '~> 2.0.9'
-pod 'GoogleSignIn'
+pod 'LiveChat', '~> 2.0.15'
+pod 'Google/SignIn'
 
 end

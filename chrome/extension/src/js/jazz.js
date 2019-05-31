@@ -8,24 +8,31 @@ try {
 
 
 window.onload = function () {
-    chrome.storage.local.get('VC_USER',
-        function (value) {
-            if (value.VC_USER.email == "") {
-                displayError("To use Jazz, please sign into Google Chrome.");
+        // Verify the user with the access token and get the auth user's profile 
+        chrome.identity.getAuthToken({
+            interactive: true
+        }, function(token) {
+            if (chrome.runtime.lastError) {
+                displayError(chrome.runtime.lastError.message);
                 return;
             }
-
-            let params =
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://www.googleapis.com/oauth2/v2/userinfo?alt=json&access_token=' + token);
+            xhr.onload = function() {
+                user_profile = JSON.parse(xhr.responseText);
+                
+                let params =
                 'groups=' + Jazz.group +
-                '&name=' + value.VC_USER.email +
-                '&email=' + value.VC_USER.email;
+                '&name=' + user_profile.name +
+                '&email=' + user_profile.email+
+                '&token=' + token;
 
-            let url = 'https://secure.livechatinc.com/licence/' + Jazz.license + '/open_chat.cgi?' + params;
-
-            let frame = document.getElementById('jazz-content');
-            frame.src = url;
-        }
-    )
+                let url = 'https://secure.livechatinc.com/licence/' + Jazz.license + '/open_chat.cgi?' + params;
+                let frame = document.getElementById('jazz-content');
+                frame.src = url;
+            };
+            xhr.send();
+        });
 }
 
 

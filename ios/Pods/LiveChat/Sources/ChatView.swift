@@ -25,7 +25,7 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
     private var animating = false
     var configuration : LiveChatConfiguration? {
         didSet {
-            if let oldValue = oldValue, let configuration = configuration {
+            if let configuration = configuration {
                 if oldValue != configuration {
                     reloadWithDelay()
                 }
@@ -33,7 +33,7 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
             
         }
     }
-    var customVariables : Dictionary<String, String>? {
+    var customVariables : CustomVariables? {
         didSet {
             reloadWithDelay()
         }
@@ -77,7 +77,6 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
         if let webView = webView {
             addSubview(webView)
             webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            HideInputAccessoryHelper().removeInputAccessoryView(from: webView)
             webView.navigationDelegate = self
             webView.uiDelegate = self
             webView.scrollView.minimumZoomScale = 1.0
@@ -100,10 +99,6 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
         nc.addObserver(self, selector: #selector(applicationDidBecomeActiveNotification), name: NSNotification.Name.UIApplicationDidBecomeActive
             , object: nil)
         nc.addObserver(self, selector: #selector(applicationWillResignActiveNotification), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
-        nc.addObserver(self, selector: #selector(keyboardWillChangeFrameNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        nc.addObserver(self, selector: #selector(keyboardWillChangeFrameNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        nc.addObserver(self, selector: #selector(keyboardDidChangeFrameNotification), name: NSNotification.Name.UIKeyboardDidChangeFrame, object: nil)
-
     }
     
     deinit {
@@ -219,6 +214,19 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
         }
     }
     
+    func clearSession() {
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { (records) in
+            for record in records {
+                if record.displayName.contains("livechat") || record.displayName.contains("chat.io") {
+                    dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), for: [record], completionHandler: {
+                        self.reloadWithDelay()
+                    })
+                }
+            }
+        }
+    }
+    
     private func chatHidden() {
         delegate?.closedChatView()
     }
@@ -239,47 +247,17 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
     
     // MARK: Keyboard frame changes
     
-    @objc func keyboardWillChangeFrameNotification(_ notification: Notification) {
-        let notification = KeyboardNotification(notification)
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        perform(#selector(delayedKeyboardWillChangeFrame(notification:)), with: notification, afterDelay: 0)
-    }
-    
-    @objc func keyboardDidChangeFrameNotification(_ notification: Notification) {
-        let notification = KeyboardNotification(notification)
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        perform(#selector(delayedKeyboardDidChangeFrame(_:)), with: notification, afterDelay: 0)
-    }
-    
-    @objc func delayedKeyboardWillChangeFrame(notification: KeyboardNotification) {
-        let coordinator = WebViewAnimationCoordinator()
-        coordinator.coordinateAnimation(webView!,
-                                        superView: self,
-                                        notification: notification)
-    }
-    
-    @objc func delayedKeyboardDidChangeFrame(_ notification: KeyboardNotification) {
-        triggerResize()
-    }
-    
     private func frameForSafeAreaInsets() -> CGRect {
         var safeAreaInsets = UIEdgeInsets.zero
         if #available(iOS 11.0, *) {
             safeAreaInsets = self.safeAreaInsets
         } else {
-            safeAreaInsets = UIEdgeInsets.zero
+            safeAreaInsets = UIEdgeInsetsMake(UIApplication.shared.statusBarFrame.size.height, 0, 0, 0)
         }
         let frameForSafeAreaInsets = CGRect(x: safeAreaInsets.left, y: safeAreaInsets.top, width: bounds.size.width - safeAreaInsets.left - safeAreaInsets.right, height: bounds.size.height - safeAreaInsets.top - safeAreaInsets.bottom)
         
         return frameForSafeAreaInsets
-    }
-    
-    private func triggerResize() {
-        let targetFrame = frameForSafeAreaInsets()
-        let triggerFrame = CGRect(origin: targetFrame.origin, size: CGSize(width: targetFrame.size.width, height: targetFrame.size.height - 1))
-        webView?.frame = triggerFrame
-        webView?.frame = targetFrame
-    }
+    }    
     
     private func displayLoadingError(withMessage message: String) {
         DispatchQueue.main.async(execute: { [weak self] in
@@ -410,10 +388,7 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
         
         loadingView.alpha = 1.0
         
-        if error.domain == NSURLErrorDomain && error.code == -999 {
-            //loadingView.displayLoadingError(withMessage: error.localizedDescription)
-            print("NSURLErrorDomain: -999. A request was cancelled.")
-        } else {
+        if !(error.domain == NSURLErrorDomain && error.code == -999) {
             loadingView.displayLoadingError(withMessage: error.localizedDescription)
         }
     }
@@ -448,6 +423,11 @@ class ChatView : UIView, WKNavigationDelegate, WKUIDelegate, WKScriptMessageHand
     
     func webViewDidClose(_ webView: WKWebView) {
         webView.removeFromSuperview()
+    }
+    
+    @available(iOS 10.0, *)
+    func webView(_ webView: WKWebView, shouldPreviewElement elementInfo: WKPreviewElementInfo) -> Bool {
+        return false
     }
     
     // MARK: WKScriptMessageHandler

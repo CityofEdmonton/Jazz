@@ -22,6 +22,10 @@
         "tabs",
         "storage"
     ],
+    "oauth2": {
+        "client_id": "1005492944288-m3hvuv2bthjf36dlouvrag6c8eo0gnnr.apps.googleusercontent.com",
+        "scopes": ["email"]   
+    },
     "background": {
         "page": "src/js/background.html"
     },
