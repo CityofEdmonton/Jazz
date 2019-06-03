@@ -18,9 +18,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "group", "\"${System.env.GROUP}\"")
-            buildConfigField("String", "license", "\"${System.env.LICENSE}\"")
+            buildConfigField("String", "group", "\"${System.env.("GROUP")}\"")
+            resValue("string", "group", "${System.env.("GROUP")}")
+            buildConfigField("String", "license", "\"${System.env.LICENCES}\"")
+            resValue("string", "license", "${System.env.LICENCES}")
             buildConfigField("String", "server_client_id", "\"${System.env.SERVER_CLIENT_ID}\"")
+            resValue("string", "server_client_id", "${System.env.SERVER_CLIENT_ID}")
         }
         debug {
             // Use static values for incremental builds to ensure that
