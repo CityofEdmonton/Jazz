@@ -1,4 +1,12 @@
 PODS:
+  - AppCenter (2.0.1):
+    - AppCenter/Analytics (= 2.0.1)
+    - AppCenter/Crashes (= 2.0.1)
+  - AppCenter/Analytics (2.0.1):
+    - AppCenter/Core
+  - AppCenter/Core (2.0.1)
+  - AppCenter/Crashes (2.0.1):
+    - AppCenter/Core
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
@@ -30,11 +38,13 @@ PODS:
   - LiveChat (2.0.15)
 
 DEPENDENCIES:
+  - AppCenter
   - Google/SignIn
   - LiveChat (~> 2.0.15)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AppCenter
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseInstanceID
@@ -45,6 +55,7 @@ SPEC REPOS:
     - LiveChat
 
 SPEC CHECKSUMS:
+  AppCenter: 6a5ff2fd007b53431259fdd74f91eb3d0dfea3d1
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
@@ -54,6 +65,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   LiveChat: 45f7106765be25bf2c0eb521aeaa1f1b546ac783
 
-PODFILE CHECKSUM: e8390550e015b5433943cbf51452b95950a09674
+PODFILE CHECKSUM: 600cf69402c3e99ce5baf583c7c30185dba76572
 
 COCOAPODS: 1.7.1

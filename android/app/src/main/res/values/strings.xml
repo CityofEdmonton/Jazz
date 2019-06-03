@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Jazz</string>
     <string name="lunching">Lunching Jazz Chat...</string>
+    <string name="chat_with_jazz">Chat with Jazz!</string>
 </resources>
