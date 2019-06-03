@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  jazz
 //
-//  Created by Jared Rewerts on 11/28/17.
+//  Created by Jared Rewerts & Jackson on 11/28/17 & 06/03/2019.
 //  Copyright © 2017 City of Edmonton. All rights reserved.
 //
 

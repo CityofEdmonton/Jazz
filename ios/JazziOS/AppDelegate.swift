@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  jazz
 //
-//  Created by Jared Rewerts on 11/28/17.
+//  Created by Jared Rewerts & Jackson on 11/28/17 & 06/03/2019.
 //  Copyright © 2017 City of Edmonton. All rights reserved.
 //
 
@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LiveChatDelegate, GIDSign
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!,
               withError error: Error!) {
         if (error == nil) {
-            LiveChat.setVariable(withKey:"token", value:user.authentication.accessToken)
+            LiveChat.setVariable(withKey:"token", value:user.authentication.idToken)
             LiveChat.name = user.profile.name
             LiveChat.email = user.profile.email
             LiveChat.presentChat()
