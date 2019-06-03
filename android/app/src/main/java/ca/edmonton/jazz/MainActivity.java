@@ -1,5 +1,6 @@
 package ca.edmonton.jazz;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import android.net.Uri;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -91,7 +93,12 @@ public class MainActivity extends AppCompatActivity{
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("Whoopsie", "signInResult:failed code=" + e.getStatusCode());
+            Context context = getApplicationContext();
+            CharSequence text ="signInResult:failed code=" + e.getStatusCode();
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
     }
 
