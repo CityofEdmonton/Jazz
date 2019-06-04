@@ -13,7 +13,6 @@
 		7A903C0A2289E8E500DD9050 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A903C082289E8E500DD9050 /* Main.storyboard */; };
 		7A903C0C2289E8E500DD9050 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A903C0B2289E8E500DD9050 /* Assets.xcassets */; };
 		7A903C0F2289E8E500DD9050 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A903C0D2289E8E500DD9050 /* LaunchScreen.storyboard */; };
-		7A9C630A22A0A37B009FB314 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9C630922A0A37B009FB314 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,6 @@
 		7A903C0B2289E8E500DD9050 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A903C0E2289E8E500DD9050 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A903C102289E8E500DD9050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A9C630922A0A37B009FB314 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		DD8A1F60F5FA098BD8176737 /* Pods_Jazz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Jazz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,7 +88,6 @@
 				7A903C0B2289E8E500DD9050 /* Assets.xcassets */,
 				7A903C0D2289E8E500DD9050 /* LaunchScreen.storyboard */,
 				7A903C102289E8E500DD9050 /* Info.plist */,
-				7A9C630922A0A37B009FB314 /* Config.swift */,
 			);
 			path = JazziOS;
 			sourceTree = "<group>";
@@ -233,7 +230,6 @@
 			files = (
 				7A903C072289E8E500DD9050 /* ViewController.swift in Sources */,
 				7A903C052289E8E500DD9050 /* AppDelegate.swift in Sources */,
-				7A9C630A22A0A37B009FB314 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
