@@ -1,0 +1,6 @@
+framework module Pods_Jazz {
+  umbrella header "Pods-Jazz-umbrella.h"
+
+  export *
+  module * { export * }
+}
