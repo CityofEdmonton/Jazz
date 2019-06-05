@@ -22,20 +22,20 @@ On your terminal:
 # Run the server locally (by defult it's on http://127.0.0.1:8000/)
 6. python3 manage.py runserver
 
-7. Create a docker image
-docker build -t jazz_backend:latest .
+# Create a docker image
+7. docker build -t jazz_backend:latest .
 
-8. Tag the image
-docker tag jazz_backend $Docker_repo/jazz-backend:latest
+# Tag the image
+8. docker tag jazz_backend $Docker_repo/jazz-backend:latest
 
-9. Push to Docker repo
-docker push $Docker_repo/jazz-backend:latest
+# Push to Docker repo
+9. docker push $Docker_repo/jazz-backend:latest
 
-10. Run this on your k8s
-kubectl run jazz-backend --image=$Docker_repo/jazz-backend:latest --port 8080
+# Run this on your k8s
+10. kubectl run jazz-backend --image=$Docker_repo/jazz-backend:latest --port 8080
 
-11. Expose k8s
-kubectl expose deployment jazz-backend --type=LoadBalancer --port 80 --target-port 8080
+# Expose k8s
+11. kubectl expose deployment jazz-backend --type=LoadBalancer --port 80 --target-port 8080
 ```
 ## Technologies
 
