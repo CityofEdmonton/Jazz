@@ -1,4 +1,5 @@
 # **Jazz - City of Edmonton Internal Application** 
+[![Build status](https://build.appcenter.ms/v0.1/apps/c83c627a-a525-40c3-9690-dc72d971819a/branches/Jazz-2.0/badge)](https://appcenter.ms)
 
 <img src="https://raw.github.com/coe-google-apps-support/jazz-chrome/master/img/large-tile.png" height="70%" width="70%" align="center">
 
