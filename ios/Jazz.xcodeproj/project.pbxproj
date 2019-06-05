@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		58D0B0E291378EBE202543AA /* Pods_Jazz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD8A1F60F5FA098BD8176737 /* Pods_Jazz.framework */; };
+		7A62571522A7230D00AE0BEF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A62571422A7230D00AE0BEF /* Config.swift */; };
 		7A903C052289E8E500DD9050 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A903C042289E8E500DD9050 /* AppDelegate.swift */; };
 		7A903C072289E8E500DD9050 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A903C062289E8E500DD9050 /* ViewController.swift */; };
 		7A903C0A2289E8E500DD9050 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A903C082289E8E500DD9050 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		5A8ECB3D0983B362028A9B6C /* Pods-JazziOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JazziOS.release.xcconfig"; path = "Target Support Files/Pods-JazziOS/Pods-JazziOS.release.xcconfig"; sourceTree = "<group>"; };
 		6532F5504D6DD05EF7CD68B3 /* Pods-JazziOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JazziOS.debug.xcconfig"; path = "Target Support Files/Pods-JazziOS/Pods-JazziOS.debug.xcconfig"; sourceTree = "<group>"; };
 		665546F965EB0BDFC3AB7C7F /* Pods-Jazz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Jazz.release.xcconfig"; path = "Target Support Files/Pods-Jazz/Pods-Jazz.release.xcconfig"; sourceTree = "<group>"; };
+		7A62571422A7230D00AE0BEF /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		7A903C012289E8E500DD9050 /* Jazz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jazz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A903C042289E8E500DD9050 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A903C062289E8E500DD9050 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				7A903C0B2289E8E500DD9050 /* Assets.xcassets */,
 				7A903C0D2289E8E500DD9050 /* LaunchScreen.storyboard */,
 				7A903C102289E8E500DD9050 /* Info.plist */,
+				7A62571422A7230D00AE0BEF /* Config.swift */,
 			);
 			path = JazziOS;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			files = (
 				7A903C072289E8E500DD9050 /* ViewController.swift in Sources */,
 				7A903C052289E8E500DD9050 /* AppDelegate.swift in Sources */,
+				7A62571522A7230D00AE0BEF /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +313,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -361,6 +365,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};

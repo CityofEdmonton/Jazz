@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LiveChatDelegate, GIDSign
      - Returns: false if the app cannot handle the URL resource or continue a user activity, otherwise return true. The return value is ignored if the app is launched as a result of a remote notification.
      */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        LiveChat.licenseId = ProcessInfo.processInfo.environment["LICENCES"]
-        LiveChat.groupId = ProcessInfo.processInfo.environment["GROUP"]
+        LiveChat.licenseId = Config.license
+        LiveChat.groupId = Config.group
         LiveChat.name = "Unknown iOS User"
         LiveChat.email = "example@livechatinc.com"
         
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LiveChatDelegate, GIDSign
         
         LiveChat.delegate = self
         
-        GIDSignIn.sharedInstance().clientID = ProcessInfo.processInfo.environment["SERVER_CLIENT_ID"]
+        GIDSignIn.sharedInstance().clientID = Config.clientID
         GIDSignIn.sharedInstance().delegate = self
         
         return true

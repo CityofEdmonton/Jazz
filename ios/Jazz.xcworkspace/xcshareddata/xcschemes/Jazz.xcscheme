@@ -61,23 +61,6 @@
             ReferencedContainer = "container:Jazz.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "GROUP"
-            value = "4"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "LICENCES"
-            value = "9281545"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "SERVER_CLIENT_ID"
-            value = "1005492944288-br1plbs5ssruri91adinp5v4p60kqcgi.apps.googleusercontent.com"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
