@@ -7,5 +7,5 @@ package ca.edmonton.jazz;
 public class Config {
     public static final String group = "GROUP";
     public static final String license = "LICENSE";
-    public static final String server_client_id = "CLIENTID"
+    public static final String server_client_id = "CLIENTID";
 }
