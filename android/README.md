@@ -1,5 +1,7 @@
 # Jazz - Android
 
+https://build.appcenter.ms/v0.1/apps/18ba1eb6-2d81-46ab-95d0-5f9c8cdbcede/branches/Jazz-2.0/badge
+
 ## Local Development
 
 1. Clone the repo.
