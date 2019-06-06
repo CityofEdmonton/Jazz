@@ -13,17 +13,19 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#2F63AE"
+        android:background="#FFFFFF"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="Jazz" tools:targetApi="lollipop" />
+        app:title="Jazz"
+        app:titleTextColor="#000000"
+        tools:targetApi="lollipop" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#2F63AE">
+        android:background="#FFFFFF">
 
 
         <android.support.design.widget.FloatingActionButton
@@ -39,10 +41,10 @@
             android:clickable="true"
             android:contentDescription="@string/chat_with_jazz"
             android:focusable="true"
-            app:backgroundTint="#839899"
+            app:backgroundTint="#2F63AE"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.902"
+            app:layout_constraintHorizontal_bias="0.893"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.937"
@@ -50,21 +52,22 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="258dp"
+            android:layout_height="204dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="24dp"
+            android:background="#FFFFFF"
+            android:contentDescription="Logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.446"
-            app:srcCompat="@drawable/coe_logo"
-            android:contentDescription="TODO" />
+            app:srcCompat="@drawable/coe_logo" />
 
 
     </android.support.constraint.ConstraintLayout>
