@@ -74,9 +74,11 @@ class WebViewBridge {
             let liveChatMessage = LiveChatMessage(id: messageId, text: text, date: Date(timeIntervalSince1970: timestamp), authorName: authorName, rawMessage: message)
             
             delegate?.received(message: liveChatMessage)
-        } else if messageType == "hideChatWindow" {
-            delegate?.hideChatWindow()
-        } else {
+        }
+        //else if messageType == "hideChatWindow" {
+        //    delegate?.hideChatWindow()
+        //}
+        else {
             print("WebViewBridge unknown messageType: " + message.debugDescription)
         }
     }
