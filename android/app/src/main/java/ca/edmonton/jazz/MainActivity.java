@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -20,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.Scopes;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import android.net.Uri;
 import android.view.View;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements ChatWindowView.Ch
         super.onStart();
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
+            refreshIdToken();
             HashMap<String, String> params = new HashMap<String, String>();
             params.put("OS", "Android " + Build.VERSION.SDK_INT + " " + Build.VERSION.RELEASE);
             params.put("Device", Build.MANUFACTURER + " " + Build.MODEL);
@@ -154,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements ChatWindowView.Ch
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
+            refreshIdToken();
             HashMap<String, String> params = new HashMap<String, String>();
             params.put("OS", "Android " + Build.VERSION.SDK_INT + " " + Build.VERSION.RELEASE);
             params.put("Device", Build.MANUFACTURER + " " + Build.MODEL);
@@ -180,6 +184,16 @@ public class MainActivity extends AppCompatActivity implements ChatWindowView.Ch
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void refreshIdToken() {
+        mGoogleSignInClient.silentSignIn()
+                .addOnCompleteListener(this, new OnCompleteListener<GoogleSignInAccount>() {
+                    @Override
+                    public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
+                        handleSignInResult(task);
+                    }
+                });
     }
 
     private void launchChat(Context context, ChatWindowConfiguration config) {
